@@ -20,7 +20,8 @@ class ViTAgeRecognizer(nn.Module):
         input_features = self.backbone.heads.head.in_features
         # Remove original classification head
         self.backbone.heads = nn.Identity()
-        self.head = nn.Linear(input_features, output_features)
+        self.head = nn.Linear(input_features, output_features, bias=False)
+        nn.init.xavier_normal_(self.head.weight)
 
     def forward(self, x):
         x = self.backbone(x)
@@ -45,7 +46,8 @@ class ResNetAgeRecognizer(nn.Module):
         input_features = self.backbone.fc.in_features
         # Remove original classification head
         self.backbone.fc = nn.Identity()
-        self.head = nn.Linear(input_features, output_features)
+        self.head = nn.Linear(input_features, output_features, bias=False)
+        nn.init.xavier_normal_(self.head.weight)
 
     def forward(self, x):
         x = self.backbone(x)
