@@ -52,27 +52,27 @@ class ResNetAgeRecognizer(nn.Module):
         x = self.head(x)
         return x
 
-def resent50_age_recongiser(**kwargs):
+def resent50_age_recogniser(**kwargs):
     return ResNetAgeRecognizer(resnet50, **kwargs)
 
-def resent101_age_recongiser(**kwargs):
+def resent101_age_recogniser(**kwargs):
     return ResNetAgeRecognizer(resnet101, **kwargs)
 
-def resent152_age_recongiser(**kwargs):
+def resent152_age_recogniser(**kwargs):
     return ResNetAgeRecognizer(resnet152, **kwargs)
 
-def vit_b_16_age_recongizer(**kwargs):
+def vit_b_16_age_recognizer(**kwargs):
     return ViTAgeRecognizer(vit_b_16, **kwargs)
 
-def vit_b_32_age_recongizer(**kwargs):
+def vit_b_32_age_recognizer(**kwargs):
     return ViTAgeRecognizer(vit_b_32, **kwargs)
 
-def vit_l_16_age_recongizer(**kwargs):
+def vit_l_16_age_recognizer(**kwargs):
     return ViTAgeRecognizer(vit_l_16, **kwargs)
 
-def vit_l_32_age_recongizer(**kwargs):
+def vit_l_32_age_recognizer(**kwargs):
     return ViTAgeRecognizer(vit_l_32, **kwargs)
 
-def vit_h_14_age_recongizer(**kwargs):
+def vit_h_14_age_recognizer(**kwargs):
     return ViTAgeRecognizer(vit_h_14, **kwargs)
 
