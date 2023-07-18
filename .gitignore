@@ -1,7 +1,5 @@
-/CACD2000/*.jpg
-/Crops/*.jpg
-/EDA.ipynb
-/error_log.txt
 /DisplayUtility/*
 __pycache__/
-/processed/*.jpg
+*.zip
+*.json
+/Cleaned/*
