@@ -13,7 +13,7 @@ Approach:
 
 TODOs:
 - [x] Dataset cleaning (face crop generation)
-- [ ] Dataset preprocessing (anchor-positive-negative sampling)
+- [x] Dataset preprocessing (anchor-positive-negative sampling)
 - [x] Model definitions
 - [x] Loss
 - [x] Preprocessor
