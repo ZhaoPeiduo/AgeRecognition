@@ -17,3 +17,11 @@ class AgeRecognitionDataset(Dataset):
         positive = self.preprocessor.preprocess(entry.positive, cust_transforms=self.cust_transforms)
         negative = self.preprocessor.preprocess(entry.negative, cust_transforms=self.cust_transforms)
         return (anchor, positive, negative)
+
+def kfold_cross_validation(dataset, curr_fold, folds=5):
+    assert curr_fold < folds, "Current fold exceeds total number of folds"
+    per_partition_length = len(dataset) // folds
+    all_indices = np.arange(0, len(dataset))
+    validating_indices = np.arange(curr_fold * per_partition_length, (curr_fold + 1) * per_partition_length)
+    training_indices = np.setdiff1d(all_indices, validating_indices)
+    return training_indices, validating_indices
