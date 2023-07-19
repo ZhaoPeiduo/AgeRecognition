@@ -35,7 +35,7 @@ class ViTAgeRecognizer(nn.Module):
             anchor_feat = self.forward(pairings[:, 0, :, :, :])
             positive_feat = self.forward(pairings[:, 1, :, :, :])
             negative_feat = self.forward(pairings[:, 2, :, :, :])
-            return torch.cat([anchor_feat, positive_feat, negative_feat], 1)
+            return torch.stack([anchor_feat, positive_feat, negative_feat], 1)
         elif len(pairings.shape) == 4:
             anchor_feat = self.forward(pairings[0, :, :, :])
             positive_feat = self.forward(pairings[1, :, :, :])
