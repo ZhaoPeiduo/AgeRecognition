@@ -1,11 +1,14 @@
 import torch
 import torch.nn as nn
 
+def cosine_distancce(v1, v2):
+    return 1 - (nn.CosineSimilarity()(v1, v2) + 1) / 2
+
 class AgeRecognitionLoss(nn.Module):
-    def __init__(self, triplet_margin=0.2, cosine_embedding_margin=0.2, device='cuda'):
+    def __init__(self, triplet_margin=1, cosine_embedding_margin=0.5, device='cuda'):
         super(AgeRecognitionLoss, self).__init__()
         # Losses
-        self.triplet_loss = nn.TripletMarginLoss(margin=triplet_margin)
+        self.triplet_loss = nn.TripletMarginWithDistanceLoss(distance_function=cosine_distancce, margin=triplet_margin)
         self.cosine_embedding_loss = nn.CosineEmbeddingLoss(margin=cosine_embedding_margin)
         # Learnable parameter
         self.importance = nn.Parameter(data=torch.tensor(0.5), requires_grad=True)
