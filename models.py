@@ -1,3 +1,4 @@
+import torch
 from torch import nn
 from torchvision.models.resnet import ResNet, resnet50, resnet101, resnet152
 from torchvision.models.vision_transformer import VisionTransformer, vit_b_16, vit_b_32, vit_l_16, vit_l_32, vit_h_14
@@ -27,6 +28,19 @@ class ViTAgeRecognizer(nn.Module):
         x = self.backbone(x)
         x = self.head(x)
         return x
+
+    def forward_features(self, pairings):
+        assert len(pairings.shape) in [4, 5], "Parings must be passed in bacthes (5 dimensions)  or individually (4 dimensions)"
+        if len(pairings.shape) == 5:
+            anchor_feat = self.forward(pairings[:, 0, :, :, :])
+            positive_feat = self.forward(pairings[:, 1, :, :, :])
+            negative_feat = self.forward(pairings[:, 2, :, :, :])
+            return torch.cat([anchor_feat, positive_feat, negative_feat], 1)
+        elif len(pairings.shape) == 4:
+            anchor_feat = self.forward(pairings[0, :, :, :])
+            positive_feat = self.forward(pairings[1, :, :, :])
+            negative_feat = self.forward(pairings[2, :, :, :])
+            return torch.stack([anchor_feat, positive_feat, negative_feat], 0)
 
 class ResNetAgeRecognizer(nn.Module):
     '''AgeRecongizer using ResNet as backbone'''
