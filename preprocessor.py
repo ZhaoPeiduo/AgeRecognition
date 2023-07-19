@@ -22,7 +22,7 @@ class AgeRecognitionPreprocessor:
 
 class RetinaPreprocessor(AgeRecognitionPreprocessor):
     def __init__(self, output_size=(224, 224), cust_transforms=None):
-        super(RecursionError, self).__init__(cust_transforms=cust_transforms)
+        super(RetinaPreprocessor, self).__init__(cust_transforms=cust_transforms)
         self.output_size = output_size
     
     def preprocess(self, image_path):
