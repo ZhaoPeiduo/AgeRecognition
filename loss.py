@@ -5,7 +5,7 @@ def cosine_distancce(v1, v2):
     return 1 - (nn.CosineSimilarity()(v1, v2) + 1) / 2
 
 class AgeRecognitionLoss(nn.Module):
-    def __init__(self, triplet_margin=1, cosine_embedding_margin=0.5, device='cuda'):
+    def __init__(self, triplet_margin=0.5, cosine_embedding_margin=0.5, device='cuda'):
         super(AgeRecognitionLoss, self).__init__()
         # Losses
         self.triplet_loss = nn.TripletMarginWithDistanceLoss(distance_function=cosine_distancce, margin=triplet_margin)
@@ -29,5 +29,5 @@ class AgeRecognitionLoss(nn.Module):
             batch_size = 1
         triplet_loss_value = self.triplet_loss(anch_feat, pos_feat, neg_feat)
         cosine_embedding_loss_value = self.cosine_embedding_loss(pos_feat, neg_feat, - torch.ones(batch_size).to(self.device))
-        return  self.importance.item() * triplet_loss_value + (1 -  self.importance.item()) * cosine_embedding_loss_value
+        return  self.importance * triplet_loss_value + (1 -  self.importance) * cosine_embedding_loss_value
         
