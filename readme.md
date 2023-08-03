@@ -9,7 +9,7 @@ Approach:
 - Initialize backbones with ImageNet pretrained weights
 - Gernate training triplets in the following manner: anchor, positive(same id, different age), negative(different id, same age)
 - Compute: a) Triplet loss and b) positive-negative cosine embedding loss
-- Loss = weighted(triplet loss + cosine embedding loss)
+- Loss = triplet loss + learnable regularization  factor * cosine embedding loss
 
 TODOs:
 - [x] Dataset cleaning (face crop generation)
@@ -17,4 +17,9 @@ TODOs:
 - [x] Model definitions
 - [x] Loss
 - [x] Preprocessor
-- [ ] Model Training
+- [x] Model Training
+- [ ] Investigate if vit has overfitted
+
+Age recognizers using resnet101 and vit_b_16 backbones are now avaliable [here](https://drive.google.com/drive/folders/1oG9tei4nwXHCYR-gi-leqKN1TJ2nM7cd?usp=sharing)
+
+Refer to sample.ipynb for sample usage.
