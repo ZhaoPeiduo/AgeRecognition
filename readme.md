@@ -1,5 +1,7 @@
 ### Age Recognition Using ResNet and Vision Transformer
 
+Disclaimer: Here Age recognition refers to matching faces of the same person across different ages, NOT predicting a person's age given his/her face. 
+
 Dataset: [Cross-Age Celebrity Dataset(CACD2000)](https://bcsiriuschen.github.io/CARC/): Conatining celebrities faces across different ages.
 
 The face crops and the identity mapping can be found in this [link](https://drive.google.com/drive/folders/1bv5mg0DhtP4mECQ8Hy7m3pZ5lUPr0MOz?usp=sharing)
