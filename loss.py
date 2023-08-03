@@ -17,10 +17,16 @@ class AgeRecognitionLoss(nn.Module):
 
     def forward(self, predictions):
         assert len(predictions.shape) in [2, 3], f"Predictions' shape does not match batch (3 dimensions) or invidual (2 dimension), found {predictions.shape}"
-        anch_feat = predictions[:, 0, :]
-        pos_feat = predictions[:, 1, :]
-        neg_feat = predictions[:, 2, :]
-        batch_size = predictions.shape[0]
+        if len(predictions.shape) == 3:
+            anch_feat = predictions[:, 0, :]
+            pos_feat = predictions[:, 1, :]
+            neg_feat = predictions[:, 2, :]
+            batch_size = predictions.shape[0]
+        elif len(predictions.shape) == 2:
+            anch_feat = predictions[0]
+            pos_feat = predictions[1]
+            neg_feat = predictions[2]
+            batch_size = 1
         triplet_loss_value = self.triplet_loss(anch_feat, pos_feat, neg_feat)
         cosine_embedding_loss_value = self.cosine_embedding_loss(pos_feat, neg_feat, - torch.ones(batch_size).to(self.device))
         return  triplet_loss_value + self.regularizing_strength * cosine_embedding_loss_value
