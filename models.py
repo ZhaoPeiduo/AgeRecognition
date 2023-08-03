@@ -37,9 +37,9 @@ class ViTAgeRecognizer(nn.Module):
             negative_feat = self.forward(pairings[:, 2, :, :, :])
             return torch.stack([anchor_feat, positive_feat, negative_feat], 1)
         elif len(pairings.shape) == 4:
-            anchor_feat = self.forward(pairings[0, :, :, :])
-            positive_feat = self.forward(pairings[1, :, :, :])
-            negative_feat = self.forward(pairings[2, :, :, :])
+            anchor_feat = self.forward(pairings[0, :, :, :].unsqueeze(0)).squeeze(0)
+            positive_feat = self.forward(pairings[1, :, :, :].unsqueeze(0)).squeeze(0)
+            negative_feat = self.forward(pairings[2, :, :, :].unsqueeze(0)).squeeze(0)
             return torch.stack([anchor_feat, positive_feat, negative_feat], 0)
 
 class ResNetAgeRecognizer(nn.Module):
@@ -67,6 +67,20 @@ class ResNetAgeRecognizer(nn.Module):
         x = self.backbone(x)
         x = self.head(x)
         return x
+    
+    def forward_features(self, pairings):
+        assert len(pairings.shape) in [4, 5], "Parings must be passed in bacthes (5 dimensions)  or individually (4 dimensions)"
+        if len(pairings.shape) == 5:
+            anchor_feat = self.forward(pairings[:, 0, :, :, :])
+            positive_feat = self.forward(pairings[:, 1, :, :, :])
+            negative_feat = self.forward(pairings[:, 2, :, :, :])
+            return torch.stack([anchor_feat, positive_feat, negative_feat], 1)
+        elif len(pairings.shape) == 4:
+            anchor_feat = self.forward(pairings[0, :, :, :].unsqueeze(0))
+            positive_feat = self.forward(pairings[1, :, :, :].unsqueeze(0))
+            negative_feat = self.forward(pairings[2, :, :, :].unsqueeze(0))
+            return torch.stack([anchor_feat, positive_feat, negative_feat], 0)
+
 
 def resent50_age_recogniser(**kwargs):
     return ResNetAgeRecognizer(resnet50, **kwargs)
