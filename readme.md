@@ -32,6 +32,10 @@ Resnet101: Accuracy = 0.76 at threshold of 0.65 on the test dataset (test_resnet
 
 Using connan anime character as illustrative examples below (where the inspiration for the project is from)
 
+![child_adult](https://github.com/ZhaoPeiduo/AgeRecognition/assets/77187494/de7c2aa3-f5ff-4c41-8f36-803798eb488b)
+
+![child_diffid](https://github.com/ZhaoPeiduo/AgeRecognition/assets/77187494/a7758788-b76f-4170-98e7-2a9f36088ffa)
+
 
 sample.ipynb shows code samples to use the model for face comparison.
 
