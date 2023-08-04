@@ -24,4 +24,7 @@ TODOs:
 
 Age recognizers using resnet101 and vit_b_16 backbones are now avaliable [here](https://drive.google.com/drive/folders/1oG9tei4nwXHCYR-gi-leqKN1TJ2nM7cd?usp=sharing).
 
-Refer to sample.ipynb for sample usage.
+Please refer to sample.ipynb for sample usage.
+
+### Evaluation Statistics
+Accuracy = 0.81 at threshold of 0.65 on the test dataset. For other evaluation metrics please refer to test.ipynb.
