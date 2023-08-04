@@ -23,8 +23,15 @@ TODOs:
 
 Age recognizers using resnet101 and vit_b_16 backbones are now avaliable [here](https://drive.google.com/drive/folders/1oG9tei4nwXHCYR-gi-leqKN1TJ2nM7cd?usp=sharing).
 
-Please refer to sample.ipynb for sample usage.
-
 ### Evaluation Statistics
 Vit_b_16: Accuracy = 0.81 at threshold of 0.65 on the test dataset (test_vit_16_b.ipynb)
-Resnet101: To be completed
+
+Resnet101: Accuracy = 0.76 at threshold of 0.65 on the test dataset (test_resnet.ipynb)
+
+### Sample Usage(?)
+
+Using connan anime character as illustrative examples below (where the inspiration for the project is from)
+
+
+sample.ipynb shows code samples to use the model for face comparison.
+
