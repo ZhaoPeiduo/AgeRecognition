@@ -76,9 +76,9 @@ class ResNetAgeRecognizer(nn.Module):
             negative_feat = self.forward(pairings[:, 2, :, :, :])
             return torch.stack([anchor_feat, positive_feat, negative_feat], 1)
         elif len(pairings.shape) == 4:
-            anchor_feat = self.forward(pairings[0, :, :, :].unsqueeze(0))
-            positive_feat = self.forward(pairings[1, :, :, :].unsqueeze(0))
-            negative_feat = self.forward(pairings[2, :, :, :].unsqueeze(0))
+            anchor_feat = self.forward(pairings[0, :, :, :].unsqueeze(0)).squeeze(0)
+            positive_feat = self.forward(pairings[1, :, :, :].unsqueeze(0)).squeeze(0)
+            negative_feat = self.forward(pairings[2, :, :, :].unsqueeze(0)).squeeze(0)
             return torch.stack([anchor_feat, positive_feat, negative_feat], 0)
 
 
